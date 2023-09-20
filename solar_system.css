@@ -1,0 +1,55 @@
+.planet {
+    display: inline-block;
+    width: 5em;
+    height: 5em;
+    border-radius: 100%;
+    background-color: aquamarine;
+}
+
+#svg_css_ex1, #circle {
+    position:absolute;
+    display: inline;
+    left: 25em;
+    top: 15em;
+    height: 10em;
+}
+
+/* #svg_css_ex1:hover path {
+    d: path(
+      "M10,30 A20,20 0,0,1 50,30 A20,20 0,0,1 90,30 Q90,60 50,90 Q10,60 10,30 z M5,5 L90,90"
+    );
+  } */
+
+#circle path {
+    height: 100%;
+    stroke: black;
+    /* d: path("M 50,0 l 50,50 -50,50"); */
+}
+
+#ellipse {
+    border: 1px solid gray;
+}
+
+
+
+
+
+
+.planet {
+    /* offset-path: ellipse(40px 200px at center); */
+    /* offset-path: path("M20,20 C20,100 200,0 200,100"); */
+    /* A rx ry angle large-arc-flag sweep-flag x y)+ */
+    offset-path: path("M 50,50      a 80,50 0 0,0 160,0     a 80,50 0 0,0 -160,0 ");
+    /* @keyframes duration | easing-function | delay | iteration-count | direction | fill-mode | play-state | name */
+    animation: move 3000ms linear infinite;
+  }
+  
+  @keyframes move {
+    0% {
+      offset-distance: 0%;
+    }
+    100% {
+      offset-distance: 100%;
+    }
+  }
+  
