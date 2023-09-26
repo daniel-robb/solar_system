@@ -6,68 +6,28 @@
 		<link href="solar_system.css" type="text/css" rel="stylesheet">
     </head>
 
-	<body>
-        <!-- <svg id="svg_css_ex1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <path
-              fill="none"
-              stroke="red"
-              d="M 10,30
-                 A 20,20 0,0,1 50,30
-                 A 20,20 0,0,1 90,30
-                 Q 90,60 50,90
-                 Q 10,60 10,30 z
-                 " />
-          </svg> -->
+	<body id="body">
         <!-- viewBox = (min-x, min-y, width, height) -->
-        
         <!-- REF: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d -->
-        <!-- <svg id="diamond">
-            <path fill="none" stroke="black"
-            d="M 50,0 
-                l 50,50 -50,50 -50,-50, 50,-50"
-            />
-        </svg>   -->
-        <!-- <svg id="ellipse">
-            <path fill="none" stroke="black"
-            d="M 50,50
-                a 80,50 0 0,0 160,0 
-                a 80,50 0 0,0 -160,0 
-                "
-            />
-            
-            <path fill="none" stroke="red"
-            d="M 50,50 
-                h 10
-                "
-            />
-        </svg> -->
-
-        
 
 		<div id="system">
 
-			<h1><div id="title_div">Model Solar System</div></h1>
+			<!-- <h1><div id="title_div">Model Solar System</div></h1> -->
 
             <!-- REF https://www.exploratorium.edu/explore/solar-system/activity/build-model -->
 
-            <svg id="orbits">
-                <path fill="none" stroke="black" id="mercury_orbit"
+            <svg id="orbits" style="border: 0px solid black">
+                <!-- <path fill="none" stroke="black" id="mercury_orbit"
                 d="M 50,50
                     a 80,50 0 0,0 160,0 
                     a 80,50 0 0,0 -160,0 
-                    "
-                />
-                
-                <!-- <path fill="none" stroke="red"
-                d="M 50,50 
-                    h 10
                     "
                 /> -->
             </svg>  
 
 
-            <div class="planet" id="sun"></div>
-            <!-- <div class="planet" id="mercury"></div>
+            <!-- <svg class="planet" id="sun"></svg> -->
+            <div class="planet" id="mercury"></div>
             <div class="planet" id="venus"></div>
             <div class="planet" id="earth"></div>
             <div class="planet" id="mars"></div>
@@ -75,7 +35,7 @@
             <div class="planet" id="saturn"></div>
             <div class="planet" id="uranus"></div>
             <div class="planet" id="neptune"></div>
-            <div class="planet" id="pluto"></div> -->
+            <div class="planet" id="pluto"></div>
 
 		</div>
 
