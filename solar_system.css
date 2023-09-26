@@ -1,7 +1,14 @@
 html, body {
   margin: 0;
   padding: 0;
-  background-color: gray;
+  background-color: black;
+}
+
+#sky {
+  width: 100vw;
+  height: 100vh;
+  background-color: skyblue;
+  position: absolute;
 }
 
 #orbits {
@@ -21,6 +28,42 @@ html, body {
     /* @keyframes duration | easing-function | delay | iteration-count | direction | fill-mode | play-state | name */
     animation: move linear infinite;
     /* animation-duration: 1000ms; */
+}
+
+#mercury {
+  background-color: #B7B8B9;
+}
+
+#venus {
+  background-color: #a57c1b;
+}
+
+#earth {
+  background-color: #4f4cb0;
+}
+
+#mars {
+  background-color: #f0e7e7;
+}
+
+#jupiter {
+  background-color: #ddbca6;
+}
+
+#saturn {
+  background-color: #ceb8b8;
+}
+
+#neptune {
+  background-color: #5b5ddf;
+}
+
+#uranus {
+  background-color: #ACE5EE;
+}
+
+#pluto {
+  background-color: #9ca6b7;
 }
 
 @keyframes move {
