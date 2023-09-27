@@ -9,6 +9,7 @@ html, body {
   height: 100vh;
   background-color: skyblue;
   position: absolute;
+  opacity: 0%;
 }
 
 #orbits {
