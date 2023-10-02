@@ -21,7 +21,7 @@ html, body {
     width: 30px;
     height: 30px;
     border-radius: 100%;
-    background-color: rgb(36, 157, 226);
+    /* background-color: rgb(36, 157, 226); */
 
     position:absolute;
 
@@ -29,6 +29,10 @@ html, body {
     /* @keyframes duration | easing-function | delay | iteration-count | direction | fill-mode | play-state | name */
     animation: move linear infinite;
     /* animation-duration: 1000ms; */
+}
+
+#sun {
+  position:absolute;
 }
 
 #mercury {
@@ -51,9 +55,9 @@ html, body {
   background-color: #ddbca6;
 }
 
-#saturn {
+/* #saturn {
   background-color: #ceb8b8;
-}
+} */
 
 #neptune {
   background-color: #5b5ddf;
@@ -76,3 +80,19 @@ html, body {
   }
 }
 
+.timeBox {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+  width: 3em;
+  height: 2em;
+}
+#minutesBox {
+  left: 7em;
+}
+#secondsBox {
+  left: 13em;
+}
+#cancelCustomTimeBox {
+  left: 19em;
+}
