@@ -16,6 +16,9 @@ var onCustomTime = false
 hoursBox_node = document.getElementById("hoursBox")
 minutesBox_node = document.getElementById("minutesBox")
 secondsBox_node = document.getElementById("secondsBox")
+sliderContainer_node = document.getElementById("sliderContainer")
+timeSlider_node = document.getElementById("timeSlider")
+timeStatusBox_node = document.getElementById("timeStatusBox")
 
 // Resource: https://public.nrao.edu/ask/which-planet-orbits-our-sun-the-fastest/
 // "       " https://solarsystem.nasa.gov/resources/686/solar-system-sizes/
@@ -182,6 +185,19 @@ function drawSun() {
     sun_node.style.left = `${(window.innerWidth/2)-sun_node.width/2}px`
 }
 
+function setupSlider() {
+    for (var i = 0; i<100; i++) {        
+        newDiv = document.createElement("div")
+        newDiv.classList.add("sliderbg")
+        newDiv.id = `sliderbg_${i}`
+        newDiv.style.opacity = `${i}%`
+        // newDiv.style.width = `${sliderContainer_node.offsetWidth/1440}px`
+        // console.log(newDiv)
+        sliderContainer_node.appendChild(newDiv)
+    }
+    // console.log(sliderContainer_node.offsetWidth)
+}
+
 function customTime() {
     onCustomTime = true
 }
@@ -221,6 +237,22 @@ function resizeModel() {
         }
         drawSun()
     }
+}
+
+function updateTime() {
+    if (onCustomTime == false) {
+        now = new Date()
+        // when secs and btw 1-10, this is 1/10 correct size
+        setTimeBoxes(now)
+    }
+    // TODO Adjust the max val in scaled to account for a min of daybreak and a max of sunset
+    totalSeconds = hoursBox_node.value*60*60 + minutesBox_node.value*60 + parseInt(secondsBox_node.value)
+    scaled = ((totalSeconds / 86400 + 1/24) * 100) % 100
+    // console.log(scaled)
+    // console.log(scaled, totalSeconds)
+    document.getElementById("sky").style.opacity = `${scaled}%`
+    timeStatusBox_node.innerHTML = `${scaled.toFixed(3)}`
+    timeSlider_node.value = hoursBox_node.value*60 + parseInt(minutesBox_node.value)
 }
 
 // Log statements
@@ -276,24 +308,10 @@ function main() {
         }
     }
 
-    var now = new Date()
-    
-    totalSeconds = now.getHours()*60*60 + now.getMinutes()*60 + now.getSeconds()
-    scaled = totalSeconds / 86400 * 100
-    setTimeBoxes(now)
-    document.getElementById("sky").style.opacity = `${scaled}%`
-    setInterval(() => {
-        if (onCustomTime == false) {
-            now = new Date()
-            // when secs and btw 1-10, this is 1/10 correct size
-            setTimeBoxes(now)
-        }
-        // TODO Adjust the max val in scaled to account for a min of daybreak and a max of sunset
-        totalSeconds = hoursBox_node.value*60*60 + minutesBox_node.value*60 + parseInt(secondsBox_node.value)
-        scaled = totalSeconds / 86400
-        console.log(scaled, totalSeconds)
-        document.getElementById("sky").style.opacity = `${scaled}%`
-    }, 1000);
+    setupSlider()
+
+    updateTime()
+    setInterval(updateTime, 1000);
 
     drawSun()
 }

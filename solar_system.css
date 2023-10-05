@@ -80,9 +80,35 @@ html, body {
   }
 }
 
+#sliderContainer {
+  display: flex;
+  background-color: grey;
+  height: 1.5em;
+}
+#sliderContainer, #timeSlider {
+  position: absolute;
+  width: 26vw;
+  top: 1em;
+  left: 1em;
+}
+.sliderbg {
+  flex: 1;
+  /* display: inline; */
+  /* position: absolute; */
+  height: 1.5em;
+  background-color: skyblue;
+}
+#timeStatusBox {
+  position: absolute;
+  top: 5em;
+  left: 1em;
+  width: 10em;
+  height: 1.5em;
+  background-color: white;
+}
 .timeBox {
   position: absolute;
-  top: 1em;
+  top: 3.5em;
   left: 1em;
   width: 3em;
   height: 2em;

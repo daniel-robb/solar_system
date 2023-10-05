@@ -50,10 +50,13 @@
 
 		</div>
 
+        <div id="sliderContainer"></div>
+        <input id="timeSlider" type="range" onchange="()=>{console.log('ope')}" value=100 min=0 max=1440>
         <input class="timeBox" id="hoursBox" type="number" onchange="customTime()" min=0 max=23>
         <input class="timeBox" id="minutesBox" type="number" onchange="customTime()" min=0 max=59>
         <input class="timeBox" id="secondsBox" type="number" onchange="customTime()" min=0 max=59>
         <input class="timeBox" id="cancelCustomTimeBox" type="button" onclick="cancelCustomTime()" value="reset">
+        <div id="timeStatusBox"></div>
 
 
         <div id="log"></div>
