@@ -82,9 +82,11 @@ html, body {
 
 #sliderContainer {
   display: flex;
-  background-color: grey;
+  background-color: black;
   height: 1.5em;
 }
+/* REF: https://www.smashingmagazine.com/2021/12/create-custom-range-input-consistent-browsers/ */
+/* https://www.w3schools.com/howto/howto_js_rangeslider.asp */
 #sliderContainer, #timeSlider {
   position: absolute;
   width: 26vw;
@@ -93,8 +95,6 @@ html, body {
 }
 .sliderbg {
   flex: 1;
-  /* display: inline; */
-  /* position: absolute; */
   height: 1.5em;
   background-color: skyblue;
 }

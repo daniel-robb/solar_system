@@ -13,21 +13,11 @@
 
 		<div id="system">
 
-			<!-- <h1><div id="title_div">Model Solar System</div></h1> -->
-
             <!-- REF https://www.exploratorium.edu/explore/solar-system/activity/build-model -->
 
-            <svg id="orbits" style="border: 0px solid black">
-                <!-- <path fill="none" stroke="black" id="mercury_orbit"
-                d="M 50,50
-                    a 80,50 0 0,0 160,0 
-                    a 80,50 0 0,0 -160,0 
-                    "
-                /> -->
-            </svg>  
+            <svg id="orbits" style="border: 0px solid black"></svg>  
 
 
-            <!-- <svg class="planet" id="sun"></svg> -->
             <img id="sun" src='assets/sun.svg'/>
             <img class="planet" id="mercury" src='assets/mercury.svg'/>
             <img class="planet" id="venus" src='assets/venus.svg'/>
@@ -38,24 +28,15 @@
             <img class="planet" id="neptune" src='assets/neptune.svg'/>
             <img class="planet" id="uranus" src='assets/uranus.svg'/>
             <img class="planet" id="pluto" src='assets/pluto.svg'/>
-            <!-- <div class="planet" id="mercury"></div> -->
-            <!-- <div class="planet" id="venus"></div>
-            <div class="planet" id="earth"></div>
-            <div class="planet" id="mars"></div>
-            <div class="planet" id="jupiter"></div>
-            <div class="planet" id="saturn"></div>
-            <div class="planet" id="uranus"></div>
-            <div class="planet" id="neptune"></div>
-            <div class="planet" id="pluto"></div> -->
 
 		</div>
 
         <div id="sliderContainer"></div>
-        <input id="timeSlider" type="range" onchange="()=>{console.log('ope')}" value=100 min=0 max=1440>
-        <input class="timeBox" id="hoursBox" type="number" onchange="customTime()" min=0 max=23>
-        <input class="timeBox" id="minutesBox" type="number" onchange="customTime()" min=0 max=59>
-        <input class="timeBox" id="secondsBox" type="number" onchange="customTime()" min=0 max=59>
-        <input class="timeBox" id="cancelCustomTimeBox" type="button" onclick="cancelCustomTime()" value="reset">
+        <input id="timeSlider" type="range" value=100 min=0 max=1440>
+        <input class="timeBox" id="hoursBox" type="number" onchange="setSkyControlTo('boxes')" min=0 max=23>
+        <input class="timeBox" id="minutesBox" type="number" onchange="setSkyControlTo('boxes')" min=0 max=59>
+        <input class="timeBox" id="secondsBox" type="number" onchange="setSkyControlTo('boxes')" min=0 max=59>
+        <input class="timeBox" id="cancelCustomTimeBox" type="button" onclick="resetSkyControl()" value="reset">
         <div id="timeStatusBox"></div>
 
 

@@ -12,7 +12,7 @@ const PLANET_CLASS = document.getElementsByClassName("planet")
 var padding = 0
 var max_svg_w = window.innerWidth - (padding*2)
 var max_svg_h = window.innerHeight - (padding*2)
-var onCustomTime = false
+var skyControlledBy = "default"
 hoursBox_node = document.getElementById("hoursBox")
 minutesBox_node = document.getElementById("minutesBox")
 secondsBox_node = document.getElementById("secondsBox")
@@ -172,10 +172,11 @@ function randFloatBetween(min, max) {
     return Math.random() * (max - min) + min;
 }
 
-function setTimeBoxes(now) {
+function setTimeControls(now) {
     hoursBox_node.value = now.getHours()
     minutesBox_node.value = now.getMinutes()
     secondsBox_node.value = now.getSeconds()
+    timeSlider_node.value = now.getHours()*60+parseInt(now.getMinutes())
 }
 
 function drawSun() {
@@ -186,11 +187,13 @@ function drawSun() {
 }
 
 function setupSlider() {
-    for (var i = 0; i<100; i++) {        
+    NUMBARS = 1440//86400//100
+    for (var i = 0; i<NUMBARS; i++) {        
         newDiv = document.createElement("div")
         newDiv.classList.add("sliderbg")
         newDiv.id = `sliderbg_${i}`
-        newDiv.style.opacity = `${i}%`
+        passVal = (i+1)*86400/NUMBARS
+        newDiv.style.opacity = `${getSkyOpacity(passVal)}%`
         // newDiv.style.width = `${sliderContainer_node.offsetWidth/1440}px`
         // console.log(newDiv)
         sliderContainer_node.appendChild(newDiv)
@@ -198,13 +201,14 @@ function setupSlider() {
     // console.log(sliderContainer_node.offsetWidth)
 }
 
-function customTime() {
-    onCustomTime = true
+function setSkyControlTo(controller) {
+    skyControlledBy = controller
+    updateTime()
 }
 
-function cancelCustomTime() {
-    onCustomTime = false
-    setTimeBoxes(new Date())
+function resetSkyControl() {
+    skyControlledBy = "default"
+    setTimeControls(new Date())
 }
 
 function resizeModel() {
@@ -239,20 +243,33 @@ function resizeModel() {
     }
 }
 
-function updateTime() {
-    if (onCustomTime == false) {
-        now = new Date()
-        // when secs and btw 1-10, this is 1/10 correct size
-        setTimeBoxes(now)
-    }
-    // TODO Adjust the max val in scaled to account for a min of daybreak and a max of sunset
-    totalSeconds = hoursBox_node.value*60*60 + minutesBox_node.value*60 + parseInt(secondsBox_node.value)
-    scaled = ((totalSeconds / 86400 + 1/24) * 100) % 100
+function getSkyOpacity(totalSeconds) {
+    // totalSeconds = hoursBox_node.value*60*60 + minutesBox_node.value*60 + parseInt(secondsBox_node.value)
+    skyOpacity = ((totalSeconds / 86400 + 1/24) * 100) % 100
     // console.log(scaled)
     // console.log(scaled, totalSeconds)
-    document.getElementById("sky").style.opacity = `${scaled}%`
-    timeStatusBox_node.innerHTML = `${scaled.toFixed(3)}`
-    timeSlider_node.value = hoursBox_node.value*60 + parseInt(minutesBox_node.value)
+    return skyOpacity
+}
+
+function updateTime() {
+    dateObj = new Date()
+    switch (skyControlledBy) {
+        case "slider":
+            hours = Math.floor(timeSlider_node.value/60)
+            minutes = timeSlider_node.value-hours*60
+            dateObj.setHours(hours, minutes, 0)
+            break;
+        case "boxes":
+            dateObj.setHours(hoursBox_node.value, minutesBox_node.value, secondsBox_node.value)
+        // case "default":
+            // setTimeControls(dateObj)
+    }
+    setTimeControls(dateObj)
+    // TODO Adjust the max val in scaled to account for a min of daybreak and a max of sunset
+    skyOpacity = getSkyOpacity(hoursBox_node.value*60*60 + minutesBox_node.value*60 + parseInt(secondsBox_node.value))
+    document.getElementById("sky").style.opacity = `${skyOpacity}%`
+    timeStatusBox_node.innerHTML = `${skyOpacity.toFixed(3)}`
+    // timeSlider_node.value = hoursBox_node.value*60 + parseInt(minutesBox_node.value)
 }
 
 // Log statements
@@ -314,6 +331,10 @@ function main() {
     setInterval(updateTime, 1000);
 
     drawSun()
+}
+
+timeSlider_node.oninput = function() {
+    setSkyControlTo("slider")
 }
 
 addEventListener("resize", () => {
