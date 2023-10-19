@@ -345,12 +345,13 @@ addEventListener("resize", () => {
 
 
 // TO-DO list
-// TODO Remove scrollbars by default
 // TODO Scale orbits and planets three ways: one to all fit and be to scale, one to not all fit, but be to scale, and one to be inaccurate but easy to see
 // TODO Generalize the init and resize drawing loops
 // TODO Add stars to the background
 // TODO Re-set daytime background to dawn and dusk
 // TODO Add slider or textboxes for daytime background
+// TODO Add pause button
+// TODO Add clickable popup blurbs for each planet
 
 
 main()
